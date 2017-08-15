@@ -1,0 +1,68 @@
+## Enable mouse
+set mouse
+## Smooth scrolling: scroll text line by line
+set smooth
+## Auto-indentation: indent new line with previous line's indentation
+set autoindent
+## Backups: backup to current file name suffixed with a ~
+#set backup
+## Backups directory: directory save backup files
+#set backupdir "/home/$(whoami)/nano-backups"
+## Case-insensitive search
+set casesensitive
+## Nano history: save search/replace strings to the ~/.nano_history file
+#set historylog
+## morespace: remove blank line below titlebar
+set morespace
+## nohelp: remove shortcut lists from bottom
+#set nohelp
+## Disable line wrapping
+set nowrap
+## Tab size: set width of tab
+set tabsize 4
+## Convert typed tabs into spaces
+#set tabstospaces
+## Syntax highlighting
+include /usr/share/nano/default.nanorc
+#
+#include /usr/share/nano/asm.nanorc
+#include /usr/share/nano/autoconf.nanorc
+#include /usr/share/nano/awk.nanorc
+#include /usr/share/nano/changelog.nanorc
+#include /usr/share/nano/cmake.nanorc
+#include /usr/share/nano/c.nanorc
+#include /usr/share/nano/css.nanorc
+#include /usr/share/nano/debian.nanorc
+#include /usr/share/nano/elisp.nanorc
+#include /usr/share/nano/fortran.nanorc
+#include /usr/share/nano/gentoo.nanorc
+#include /usr/share/nano/go.nanorc
+#include /usr/share/nano/groff.nanorc
+#include /usr/share/nano/guile.nanorc
+#include /usr/share/nano/html.nanorc
+#include /usr/share/nano/java.nanorc
+#include /usr/share/nano/javascript.nanorc
+#include /usr/share/nano/json.nanorc
+#include /usr/share/nano/lua.nanorc
+#include /usr/share/nano/makefile.nanorc
+include /usr/share/nano/man.nanorc
+#include /usr/share/nano/mgp.nanorc
+#include /usr/share/nano/mutt.nanorc
+include /usr/share/nano/nanorc.nanorc
+#include /usr/share/nano/nftables.nanorc
+#include /usr/share/nano/objc.nanorc
+#include /usr/share/nano/ocaml.nanorc
+#include /usr/share/nano/patch.nanorc
+#include /usr/share/nano/perl.nanorc
+#include /usr/share/nano/php.nanorc
+#include /usr/share/nano/po.nanorc
+#include /usr/share/nano/postgresql.nanorc
+#include /usr/share/nano/pov.nanorc
+#include /usr/share/nano/python.nanorc
+#include /usr/share/nano/ruby.nanorc
+include /usr/share/nano/sh.nanorc
+#include /usr/share/nano/spec.nanorc
+#include /usr/share/nano/tcl.nanorc
+#include /usr/share/nano/texinfo.nanorc
+#include /usr/share/nano/tex.nanorc
+#include /usr/share/nano/xml.nanorc
