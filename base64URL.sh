@@ -1,4 +1,4 @@
-#! /bin/bash
+#!/usr/bin/env bash
 # base64url.sh -  Base64URL encoding in bash
 # source: http://www.yuryoparin.com/2014/05/base64url-in-bash.html
 # source: https://gist.github.com/yuryoparin/ffb0c8e4c8f05c4dd21e
