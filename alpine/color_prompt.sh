@@ -12,4 +12,4 @@ else
     PS1="$LBLU\A$RST $LGRN[$RST$LMAG\w$RST$LGRN] \\$>$RST "
 fi
 
-unset RST RED GREEN CYAN
+unset RST LRED LGRN LBLU LMAG
