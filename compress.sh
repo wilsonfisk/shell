@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
 # A tar wrapper script to simplify archiving files.
+# source: https://github.com/Herd-Base/general-scripts
 
 # help
 if [ $# -eq 0 -o "$1" = -h -o "$1" = --help ] ; then

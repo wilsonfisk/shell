@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 # A wrapper script to decompress various archive types.
+# source: https://github.com/Herd-Base/general-scripts
+
 shopt -s extglob
 
 # options: help and list
