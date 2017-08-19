@@ -1,4 +1,4 @@
-#!/usr/bin/sed -f
+#!/bin/sed -f
 s/&#160;/ /g
 s/&nbsp;/ /g
 s/&#161;/¡/g
