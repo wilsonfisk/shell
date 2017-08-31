@@ -20,7 +20,53 @@
 * Configure hostname:
   * \# vim /etc/myname
 ## General Information:
-* Patching OpenBSD:
+### Shell settings:
+  * **Default shell:** ksh
+  * ksh first reads '/home/<user>/.profile
+  * /$ echo "export ENV=$HOME/.kshrc; export ENV" >> .profile
+  * ```Shell
+    EDITOR=vim
+	EMAIL=user@example.com
+	HISTFILE=~/.ksh_history
+	HISTSIZE=10000
+	LC_ALL=en_US.UTF-8
+	LANG=en_US.UTF-8
+	\#LC_CTYPE=en_US.UTF-8
+	PKG_PATH=ftp://openbsd.mirror.net/pub/OpenBSD/$(uname -r)/packages/$(uname -m)/
+	ALT_PKG_PATH=http://openbsd.mirror.net/pub/OpenBSD/$(uname -r)/packages/$(uname -m)
+	RST="\e[00m"; LRED="\e[1;91m"; LGRN="\e[1;92m"; LBLU="\e[1;94m"; LMAG="\e[1;95m"
+	if [[ $EUID == 0 ]]
+		then PS1="$LMAG\A$RST $LRED[$RST$LBLU\w$RST$LRED] \\$>$RST "
+	    else PS1="$LMAG\A$RST $LGRN[$RST$LBLU\w$RST$LGRN] \\$>$RST "
+	fi; unset RST LRED LGRN LBLU LMAG
+	export EDITOR EMAIL HISTFILE HISTSIZE LC_ALL LANG PKG_PATH ALT_PKG_PATH PS1
+	unset MAIL
+	unset MAILCHECK
+	\# reload .kshrc
+	alias reload='. ~/.kshrc'
+	alias cp='cp -i'
+	alias ls='ls -A --color=auto'
+	alias ll='ls -aFhl --color=auto'
+	alias mv='mv -i'
+	alias rm='rm -i'
+  ```
+
+### Upgrading to -stable:
+  * Using [m:tier](https://www.mtier.org):
+    * \$ doas mkdir /root/bin
+	* \$ doas ftp -o /root/bin/openup https://stable.mtier.org/openup
+	* \$ doas chmod 750 /root/bin/openup
+	* \$ echo "#!/bin/sh" > daily.local
+	* \$ echo "" >> daily.local
+	* \$ echo "Checking for updates..." >> daily.local
+	* \$ echo "/bin/sh /root/bin/openup -c" >> daily.local
+	* \$ doas mv daily.local /etc/
+	* \$ doas chown root:wheel /etc/daily.local
+	* \$ doas chmod 644 /etc/daily.local
+	* \$ doas /root/bin/openup
+	* \$ doas reboot
+
+### Patching OpenBSD:
   * \$ cd /tmp
   * \$ wget .../src.tar.gz
   * \$ wget .../sys.tar.gz
@@ -29,7 +75,22 @@
   * \$ tar xvfz /tmp/src.tar.gz
   * \$ cd /tmp
 
-* Mount a USB drive: (_**Note:** sd0 is used as an example_)
+### Installing packages:
+  * **List installed packages:**
+    * \$ pkg_info
+	* \$ pkg_info | grep 'package name'
+  * **Update installed packages:**
+    * \$ doas pkg_add
+	* \$ doas pkg_add -u <package name>
+  * **Install a package:**
+    * \$ doas pkg_add -ivvv <package> | tee <package>.txt
+  * **Useful Packages:**
+    * **pkg_mgr**: A high-level, user-friendly package browser for OpenBSD. It allows the user to install, uninstall, search & browse available packages using a simple curses interface. It relies on sqlports for its internal database, & __pkg_add__, __pkg_info__& __pkg_delete__ for package operations.
+  * #### Links:
+    * [OpenBSD ports page](https://www.openbsd.org/faq/faq15.html)
+	* [OpenPorts.se](http://openports.se)
+
+### Mount a USB drive: (_**Note:** sd0 is used as an example_)
   * Create a directory to mount the USB drive:
     * \# mkdir /mnt/usbkey
 	* \# sysctl hw.disknames
@@ -41,7 +102,7 @@
 	* \# ls -al
   * Unmounting the USB drive:
     * \# umount /mnt/usbkey
-* Wireless:
+### Wireless:
   * Using wpa_supplicant: (_**Note:** urtw0 is used as an example_)
     * Scan for wireless networks:
 	  * \$ ifconfig urtw0 up
