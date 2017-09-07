@@ -26,30 +26,32 @@
   * /$ echo "export ENV=$HOME/.kshrc; export ENV" >> .profile
   * Example .kshrc:
 ```Shell
-    EDITOR=vim
-	EMAIL=user@example.com
-	HISTFILE=~/.ksh_history
-	HISTSIZE=10000
-	LC_ALL=en_US.UTF-8
-	LANG=en_US.UTF-8
-	\#LC_CTYPE=en_US.UTF-8
-	PKG_PATH=ftp://openbsd.mirror.net/pub/OpenBSD/$(uname -r)/packages/$(uname -m)/
-	ALT_PKG_PATH=http://openbsd.mirror.net/pub/OpenBSD/$(uname -r)/packages/$(uname -m)
-	RST="\e[00m"; LRED="\e[1;91m"; LGRN="\e[1;92m"; LBLU="\e[1;94m"; LMAG="\e[1;95m"
-	if [[ $EUID == 0 ]]
-		then PS1="$LMAG\A$RST $LRED[$RST$LBLU\w$RST$LRED] \\$>$RST "
-	    else PS1="$LMAG\A$RST $LGRN[$RST$LBLU\w$RST$LGRN] \\$>$RST "
-	fi; unset RST LRED LGRN LBLU LMAG
-	export EDITOR EMAIL HISTFILE HISTSIZE LC_ALL LANG PKG_PATH ALT_PKG_PATH PS1
-	unset MAIL
-	unset MAILCHECK
-	\# reload .kshrc
-	alias reload='. ~/.kshrc'
-	alias cp='cp -i'
-	alias ls='ls -A --color=auto'
-	alias ll='ls -aFhl --color=auto'
-	alias mv='mv -i'
-	alias rm='rm -i'
+EDITOR=vim
+EMAIL=user@example.com
+HISTFILE=~/.ksh_history
+HISTSIZE=10000
+LC_ALL=en_US.UTF-8
+LANG=en_US.UTF-8
+\#LC_CTYPE=en_US.UTF-8
+PKG_PATH=ftp://openbsd.mirror.net/pub/OpenBSD/$(uname -r)/packages/$(uname -m)/
+ALT_PKG_PATH=http://openbsd.mirror.net/pub/OpenBSD/$(uname -r)/packages/$(uname -m)
+## color prompt
+RST="\e[00m"; LRED="\e[1;91m"; LGRN="\e[1;92m"; LBLU="\e[1;94m"; LMAG="\e[1;95m"
+if [[ $EUID == 0 ]]; then
+	PS1="$LMAG\A$RST $LRED[$RST$LBLU\w$RST$LRED] \\$>$RST "
+else
+    PS1="$LMAG\A$RST $LGRN[$RST$LBLU\w$RST$LGRN] \\$>$RST "
+fi; unset RST LRED LGRN LBLU LMAG
+export EDITOR EMAIL HISTFILE HISTSIZE LC_ALL LANG PKG_PATH ALT_PKG_PATH PS1
+unset MAIL
+unset MAILCHECK
+\# reload .kshrc
+alias reload='. ~/.kshrc'
+alias cp='cp -i'
+alias ls='ls -A --color=auto'
+alias ll='ls -aFhl --color=auto'
+alias mv='mv -i'
+alias rm='rm -i'
 ```
 
 ### Upgrading to -stable:
@@ -79,14 +81,14 @@
 ### Installing packages:
   * **List installed packages:**
     * \$ pkg_info
-	* \$ pkg_info | grep 'package name'
+	* \$ pkg_info | grep *package_name*
   * **Update installed packages:**
     * \$ doas pkg_add
-	* \$ doas pkg_add -u <package name>
+	* \$ doas pkg_add -u *package_name*
   * **Install a package:**
-    * \$ doas pkg_add -ivvv <package> | tee <package>.txt
+    * \$ doas pkg_add -ivvv *package_name* | tee package_name.txt
   * **Useful Packages:**
-    * **pkg_mgr**: A high-level, user-friendly package browser for OpenBSD. It allows the user to install, uninstall, search & browse available packages using a simple curses interface. It relies on sqlports for its internal database, & __pkg_add__, __pkg_info__& __pkg_delete__ for package operations.
+    * **pkg_mgr**: A high-level, user-friendly package browser for OpenBSD. It allows the user to install, uninstall, search & browse available packages using a simple curses interface. It relies on sqlports for its internal database, & **pkg_add**, **pkg_info** and **pkg_delete** for package operations.
   * #### Links:
     * [OpenBSD ports page](https://www.openbsd.org/faq/faq15.html)
 	* [OpenPorts.se](http://openports.se)
@@ -109,13 +111,13 @@
 	  * \$ ifconfig urtw0 up
 	  * \$ ifconfig urtw0 scan
 	* Connect to WPA network:
-	  * \$ ifconfig urtw0 nwid <SSID> wpakey <PASS>
+	  * \$ ifconfig urtw0 nwid *SSID* wpakey *PASS*
 	  * \$ dhclient urtw0
 	* Connect to WPA network with spaces in the BSSID:
-	  * \$ ifconfig urtw0 nwid 'SSID with spaces' wpakey <PASS>
+	  * \$ ifconfig urtw0 nwid '*SSID with spaces*' wpakey *PASS*
 	  * \$ dhclient urtw0
 	* Connect to WPA network with special characters in the BSSID:
-	  * \$ ifconfig urtw0 nwid "SSID_w!th_$pec!@1_ch@r@cter$" wpakey <PASS>
+	  * \$ ifconfig urtw0 nwid "*SSID_w!th_$pec!@1_ch@r@cter$*" wpakey *PASS*
 	  * \$ dhclient urtw0
 	* Monitor Mode:
 	  * grep for wireless card information:
