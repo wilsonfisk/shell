@@ -28,7 +28,7 @@
 	* **user:** ~/.profile
 	* **host/all users:** /etc/profile
 	* **hardware/software:** /etc/environment
-  * \$ echo "export ENV=${HOME}/.kshrc; export ENV" >> .profile
+  * To enable execution of .kshrc: \$ echo "export ENV=${HOME}/.kshrc; export ENV" >> .profile
   * Example .kshrc:
 ```Shell
 EDITOR=vim
@@ -43,7 +43,7 @@ ALT_PKG_PATH=http://openbsd.mirror.net/pub/OpenBSD/$(uname -r)/packages/$(uname 
 ## color prompt
 RST="\e[00m"; LRED="\e[1;91m"; LGRN="\e[1;92m"; LBLU="\e[1;94m"; LMAG="\e[1;95m"
 if [[ $EUID == 0 ]]; then
-	PS1="$LMAG\A$RST $LRED[$RST$LBLU\w$RST$LRED] \\$>$RST "
+    PS1="$LMAG\A$RST $LRED[$RST$LBLU\w$RST$LRED] \\$>$RST "
 else
     PS1="$LMAG\A$RST $LGRN[$RST$LBLU\w$RST$LGRN] \\$>$RST "
 fi; unset RST LRED LGRN LBLU LMAG
@@ -58,8 +58,23 @@ alias ll='ls -aFhl --color=auto'
 alias mv='mv -i'
 alias rm='rm -i'
 ```
-
 ### Upgrading to -stable:
+  * Using cvs:
+    * Fetching the *-stable* trees:
+	  * \$ cd /usr
+	  * \$ cvs -qd anoncvs@anoncvs.example.org:/cvs checkout -rOPENBSD_6_1 -P src
+	  * After the tree is checked out, it can be updated at any time:
+	    * \$ cd /usr/src
+	    * \$ cvs -q up -Pd
+	    * Specify the branch with the *-r* command
+	    * **Modules:** src xenocara ports
+	    * All the trees should be checked out and updated at the same time.
+	* Fetching the *-current* trees:
+	  * \$ cd /usr
+	  * \$ cvs -qd anoncvs@anoncvs.example.org:/cvs checkout -P src
+	  * After the tree is checked out, it can be updated at any time:
+	    * \$ cd /usr/src
+		* \$ cvs -q up -Pd
   * Using [m:tier](https://www.mtier.org):
     * \$ doas mkdir /root/bin
 	* \$ doas ftp -o /root/bin/openup https://stable.mtier.org/openup
@@ -75,13 +90,28 @@ alias rm='rm -i'
 	* \$ doas reboot
 
 ### Patching OpenBSD:
-  * \$ cd /tmp
-  * \$ wget .../src.tar.gz
-  * \$ wget .../sys.tar.gz
-  * \$ cd /usr/src
-  * \$ tar xvfz /tmp/sys.tar.gz
-  * \$ tar xvfz /tmp/src.tar.gz
-  * \$ cd /tmp
+OpenBSD has four active source repositories:
+  * **src** - source code for the base system
+  * **ports** - the ports tree
+  * **www** - web pages
+  * **xenocara** - xenocara
+  * **Preloading the source code tree:**
+    * \$ cd /tmp
+    * \$ wget .../src.tar.gz
+    * \$ wget .../sys.tar.gz
+    * \$ wget .../ports.tar.gz
+    * \$ wget .../xenocara.tar.gz
+    * \$ cd /usr/src
+    * \$ tar xvfz /tmp/sys.tar.gz
+    * \$ tar xvfz /tmp/src.tar.gz
+    * \$ cd /usr
+    * \$ tar xvfz /tmp/ports.tar.gz
+    * \$ tar xvfz /tmp/xenocara.tar.gz
+    * \$ cd /tmp
+    * **Additional info:
+      * [OpenBSD Ports FAQ](https://www.openbsd.org/faq/ports/)
+      * [OpenBSD System Management FAQ](https://www.openbsd.org/faq/faq10.html)
+      * [OpenBSD Anonymous CVS FAQ](https://www.openbsd.org/anoncvs.html)
 
 ### Installing packages:
   * **List installed packages:**
