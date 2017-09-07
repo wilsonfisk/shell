@@ -22,8 +22,13 @@
 ## General Information:
 ### Shell settings:
   * **Default shell:** ksh
-  * ksh first reads '/home/user/.profile
-  * /$ echo "export ENV=$HOME/.kshrc; export ENV" >> .profile
+  * ksh first reads '/home/user/.kshrc' then '/home/user/.profile'. The '.profile' file is read only once by the login ksh instance, while the '.kshrc' file is read by each new ksh instance.
+  * **Initialization files:**
+    * **shell:** ~/.kshrc
+	* **user:** ~/.profile
+	* **host/all users:** /etc/profile
+	* **hardware/software:** /etc/environment
+  * \$ echo "export ENV=${HOME}/.kshrc; export ENV" >> .profile
   * Example .kshrc:
 ```Shell
 EDITOR=vim
