@@ -22,9 +22,10 @@
 ## General Information:
 ### Shell settings:
   * **Default shell:** ksh
-  * ksh first reads '/home/<user>/.profile
+  * ksh first reads '/home/user/.profile
   * /$ echo "export ENV=$HOME/.kshrc; export ENV" >> .profile
-  * ```Shell
+  * Example .kshrc:
+```Shell
     EDITOR=vim
 	EMAIL=user@example.com
 	HISTFILE=~/.ksh_history
@@ -49,7 +50,7 @@
 	alias ll='ls -aFhl --color=auto'
 	alias mv='mv -i'
 	alias rm='rm -i'
-  ```
+```
 
 ### Upgrading to -stable:
   * Using [m:tier](https://www.mtier.org):
